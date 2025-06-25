@@ -1,0 +1,76 @@
+\documentclass[12pt, a4paper, oneside]{report}
+
+% ==============================================================================
+% 1. PAQUETES BÁSICOS Y DE IDIOMA
+% ==============================================================================
+\usepackage[utf8]{inputenc}
+\usepackage[spanish, es-tabla]{babel}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{amsmath, amssymb}
+\usepackage{lipsum} % Para generar texto de relleno (borrar al final)
+
+% ==============================================================================
+% 2. CONFIGURACIÓN DE MÁRGENES Y ASPECTO
+% ==============================================================================
+\geometry{a4paper, left=3cm, right=2.5cm, top=3cm, bottom=3cm}
+\graphicspath{{img/}} % Ruta donde LaTeX buscará las imágenes
+
+% ==============================================================================
+% 3. ENCABEZADOS Y PIES DE PÁGINA (CON FANCYHDR)
+% ==============================================================================
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\nouppercase{\leftmark}}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% ==============================================================================
+% 4. BIBLIOGRAFÍA CON BIBLATEX
+% ==============================================================================
+\usepackage[backend=biber, style=apa, sorting=nyt]{biblatex}
+\addbibresource{bib/bibliografia.bib}
+
+% ==============================================================================
+% 5. HIPERVÍNCULOS (DEBE IR CASI AL FINAL)
+% ==============================================================================
+\usepackage[colorlinks=true, linkcolor=black, citecolor=black, urlcolor=blue]{hyperref}
+
+% ==============================================================================
+% INICIO DEL DOCUMENTO
+% ==============================================================================
+\begin{document}
+
+% --- PORTADA ---
+\input{secciones/caratula.tex}
+
+% --- PÁGINAS PRELIMINARES CON NUMERACIÓN ROMANA ---
+% \frontmatter % Comando que prepara para las páginas preliminares
+\pagestyle{fancy}
+
+\tableofcontents
+\cleardoublepage
+
+\listoffigures
+\cleardoublepage
+
+\listoftables
+\cleardoublepage
+
+% --- Resumen ---
+\input{secciones/resumen.tex}
+\cleardoublepage
+
+% --- CUERPO PRINCIPAL DEL DOCUMENTO CON NUMERACIÓN ARÁBIGA ---
+% \mainmatter % Comando que inicia el cuerpo principal y la numeración arábiga
+
+\input{secciones/capitulo1.tex}
+\input{secciones/capitulo2.tex}
+
+% --- SECCIÓN FINAL: BIBLIOGRAFÍA ---
+\cleardoublepage
+\printbibliography[title={Referencias Bibliográficas}]
+
+\end{document}
