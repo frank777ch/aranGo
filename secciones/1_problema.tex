@@ -1,0 +1,50 @@
+\chapter{Planteamiento del Problema}
+\label{chap:problema}
+
+\section{Justificación y Formulación del Problema}
+En el paradigma económico actual, marcado por la inmediatez del comercio electrónico y la globalización de las cadenas de suministro, la eficiencia logística se ha consolidado como un factor diferenciador clave para la competitividad empresarial. La distribución de mercancías, particularmente en el tramo conocido como la "última milla", representa uno de los segmentos más costosos y complejos de toda la cadena logística. La gestión ineficiente de las rutas de despacho no solo se traduce en un incremento directo de los costos operativos —a través del consumo de combustible, el mantenimiento de la flota y las horas de trabajo—, sino que también degrada la calidad del servicio y la satisfacción del cliente final.
+
+En contextos urbanos de alta densidad, como el de la ciudad de Lima, estos desafíos se ven magnificados por variables exógenas como la congestión vehicular, la variabilidad del tráfico y una geografía de entregas dispersa y heterogénea. La planificación de rutas a través de métodos manuales o heurísticas simples resulta insuficiente para abordar esta complejidad, conduciendo a soluciones subóptimas, inflexibles y con una baja capacidad de adaptación.
+
+Formalmente, este desafío se enmarca en el campo de la investigación de operaciones como el \textbf{Problema de Enrutamiento de Vehículos (VRP, por sus siglas en inglés)}, una generalización del conocido Problema del Vendedor Viajero (TSP). El VRP es un problema de optimización combinatoria clasificado como \textbf{NP-duro}, lo que significa que el tiempo computacional para encontrar una solución óptima de manera exacta crece exponencialmente con el número de clientes. Esto hace que la resolución por fuerza bruta sea inviable para cualquier instancia de tamaño realista, justificando la necesidad de recurrir a metaheurísticas como los \textbf{Algoritmos Genéticos} para encontrar soluciones de alta calidad en un tiempo de ejecución razonable.
+
+El problema específico de este proyecto se complejiza aún más al integrar un conjunto de requisitos funcionales que reflejan las necesidades operativas reales de una empresa de logística, entre los que destacan:
+\begin{itemize}
+    \item La optimización multi-objetivo para minimizar simultáneamente la distancia, el tiempo y los costos.
+    \item La gestión de una flota con capacidades limitadas.
+    \item La implementación de lógicas de negocio para la priorización, cancelación y devolución de pedidos.
+    \item La necesidad de una plataforma que permita la visualización de rutas y la gestión manual por parte de administradores.
+\end{itemize}
+
+\section{Objetivos}
+Para abordar la problemática descrita, se han definido los siguientes objetivos:
+
+\subsection{Objetivo General}
+Diseñar y proponer un modelo computacional basado en un Algoritmo Genético para la optimización de rutas de vehículos, que sea capaz de minimizar los costos operativos y los tiempos de entrega, considerando un conjunto de restricciones y reglas de negocio específicas de un entorno logístico urbano.
+
+\subsection{Objetivos Específicos}
+\begin{enumerate}
+    \item Analizar y modelar las variables y restricciones fundamentales del Problema de Enrutamiento de Vehículos, incluyendo capacidad de flota, priorización de pedidos y condiciones de tráfico, para su correcta integración en el modelo de optimización.
+    \item Implementar un prototipo de software que utilice el Algoritmo Genético diseñado para generar, evaluar y seleccionar rutas de despacho, proveyendo una interfaz para la visualización y gestión de las mismas.
+    \item Validar la efectividad del modelo propuesto mediante la evaluación de los resultados generados por el prototipo, utilizando métricas de rendimiento como la reducción de la distancia total recorrida y el número de vehículos utilizados en comparación con escenarios base.
+\end{enumerate}
+
+\section{Alcance y Limitaciones}
+Para delimitar el enfoque del proyecto y garantizar su viabilidad, se define el siguiente alcance:
+
+\subsection{Alcance}
+El alcance del presente proyecto abarca el diseño, la implementación de un prototipo y la validación de un sistema de optimización de rutas. El sistema se centrará en:
+\begin{itemize}
+    \item La resolución del Problema de Enrutamiento de Vehículos para un \textbf{único depósito} de salida y llegada.
+    \item La consideración de una flota de vehículos con \textbf{capacidades de carga definidas}.
+    \item La optimización de rutas basada en la \textbf{distancia y el tiempo estimado de viaje}, incorporando datos representativos del tráfico de la ciudad de Lima como una variable estática en el cálculo de costos de las aristas del grafo.
+    \item La implementación de la lógica de negocio para la \textbf{priorización y cancelación de pedidos}, según los requisitos funcionales definidos.
+\end{itemize}
+
+\subsection{Limitaciones}
+El proyecto no contempla las siguientes funcionalidades, las cuales quedan propuestas para trabajos futuros:
+\begin{itemize}
+    \item \textbf{Ventanas Horarias (Time Windows):} No se considerarán restricciones de tiempo específicas para la entrega en cada cliente.
+    \item \textbf{Enrutamiento Dinámico en Tiempo Real:} El sistema generará las rutas de forma estática antes del inicio de la jornada. No realizará re-planificaciones automáticas en respuesta a eventos (como alertas de tráfico o accidentes) una vez que las rutas estén en curso.
+    \item \textbf{Entregas y Recogidas Simultáneas (Pickup and Delivery):} El modelo se enfocará exclusivamente en problemas de distribución (entrega).
+\end{itemize}

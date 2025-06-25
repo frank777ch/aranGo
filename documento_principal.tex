@@ -1,70 +1,67 @@
 \documentclass[12pt, a4paper, oneside]{report}
 
-% ==============================================================================
-% 1. PAQUETES BÁSICOS Y DE IDIOMA
-% ==============================================================================
+% --- PAQUETES ESENCIALES ---
 \usepackage[utf8]{inputenc}
-\usepackage[spanish, es-tabla]{babel}
-\usepackage{graphicx}
-\usepackage{geometry}
-\usepackage{amsmath, amssymb}
-\usepackage{lipsum} % Para generar texto de relleno (borrar al final)
+\usepackage[spanish]{babel} % Para que los títulos automáticos salgan en español
+\usepackage{geometry}       % Para configurar márgenes
+\usepackage{graphicx}       % Para imágenes
+\usepackage{amsmath}        % Para fórmulas matemáticas
+\usepackage{fancyhdr}       % Para encabezados y pies de página personalizados
 
-% ==============================================================================
-% 2. CONFIGURACIÓN DE MÁRGENES Y ASPECTO
-% ==============================================================================
-\geometry{a4paper, left=3cm, right=2.5cm, top=3cm, bottom=3cm}
-\graphicspath{{img/}} % Ruta donde LaTeX buscará las imágenes
+% --- BIBLIOGRAFÍA EN FORMATO APA 7 ---
+% Biblatex es la herramienta moderna para bibliografías. Es lo que necesitas para APA 7.
+\usepackage[style=apa, backend=biber]{biblatex}
+\addbibresource{bib/referencias.bib} % Apunta a tu archivo .bib
 
-% ==============================================================================
-% 3. ENCABEZADOS Y PIES DE PÁGINA (CON FANCYHDR)
-% ==============================================================================
-\usepackage{fancyhdr}
+% --- HIPERVÍNCULOS EN EL PDF ---
+% Hace que el índice y las citas sean clickeables. Cargarlo al final es buena práctica.
+\usepackage[colorlinks=true, linkcolor=black, citecolor=black, urlcolor=black]{hyperref}
+
+% --- CONFIGURACIÓN DE PÁGINA ---
+\geometry{left=3cm, right=2.5cm, top=3cm, bottom=3cm}
+\graphicspath{{img/}} % Le dice a LaTeX que busque las imágenes en la carpeta 'img/'
+
+% --- CONFIGURACIÓN DE ENCABEZADOS ---
 \pagestyle{fancy}
-\fancyhf{}
-\fancyhead[L]{\nouppercase{\leftmark}}
-\fancyfoot[C]{\thepage}
+\fancyhf{} % Limpia encabezado y pie
+\fancyhead[L]{\nouppercase{\leftmark}} % Nombre del capítulo a la izquierda
+\fancyfoot[C]{\thepage} % Número de página al centro del pie
 \renewcommand{\headrulewidth}{0.4pt}
-\renewcommand{\footrulewidth}{0pt}
 
-% ==============================================================================
-% 4. BIBLIOGRAFÍA CON BIBLATEX
-% ==============================================================================
-\usepackage[backend=biber, style=apa, sorting=nyt]{biblatex}
-\addbibresource{bib/bibliografia.bib}
-
-% ==============================================================================
-% 5. HIPERVÍNCULOS (DEBE IR CASI AL FINAL)
-% ==============================================================================
-\usepackage[colorlinks=true, linkcolor=black, citecolor=black, urlcolor=blue]{hyperref}
-
-% ==============================================================================
+% ==========================================================
 % INICIO DEL DOCUMENTO
-% ==============================================================================
+% ==========================================================
 \begin{document}
 
-% --- PORTADA ---
+% 1. CARÁTULA (No lleva número de página)
 \input{secciones/caratula.tex}
 
-% --- PÁGINAS PRELIMINARES CON NUMERACIÓN ROMANA ---
-% \frontmatter % Comando que prepara para las páginas preliminares
-\pagestyle{fancy}
+% 2. PÁGINAS PRELIMINARES (con numeración romana)
+\pagestyle{fancy} % Reactiva los encabezados para el resto del documento
 
+% Índice General (se genera solo)
 \tableofcontents
 \cleardoublepage
 
-% --- Resumen ---
+% Resumen
 \input{secciones/resumen.tex}
 \cleardoublepage
 
-% --- CUERPO PRINCIPAL DEL DOCUMENTO CON NUMERACIÓN ARÁBIGA ---
-% \mainmatter % Comando que inicia el cuerpo principal y la numeración arábiga
+% 3. CUERPO DEL INFORME (con numeración arábiga)
 
-\input{secciones/capitulo1.tex}
-\input{secciones/capitulo2.tex}
+\input{secciones/1_problema.tex}
+\input{secciones/2_marco_teorico.tex}
+\input{secciones/3_metodologia.tex}
+\input{secciones/4_propuesta.tex}
+\input{secciones/5_conclusiones.tex}
+\input{secciones/6_recomendaciones.tex}
 
-% --- SECCIÓN FINAL: BIBLIOGRAFÍA ---
+% 4. BIBLIOGRAFÍA (se genera sola a partir de lo que cites)
 \cleardoublepage
-\printbibliography[title={Referencias Bibliográficas}]
+\printbibliography[title={Bibliografía}]
+
+% 5. SECCIÓN DE AUTORES (sin numerar)
+\cleardoublepage
+\input{secciones/7_autores.tex}
 
 \end{document}
